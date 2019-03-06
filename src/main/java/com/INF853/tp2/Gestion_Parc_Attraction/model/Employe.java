@@ -5,6 +5,7 @@
  */
 package com.INF853.tp2.Gestion_Parc_Attraction.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,15 +16,17 @@ import javax.persistence.Table;
  *
  * @author Orann
  */
+
 @Entity
-@Table(name = "personne")
-public class Personne {
+@Table(name = "employe")
+public class Employe{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_personne;
-    private String nom;
-    private String prenom;
+    private String login;    
+    private String mot_de_passe;
+    private String type;
 
     public int getId_personne() {
         return id_personne;
@@ -33,20 +36,28 @@ public class Personne {
         this.id_personne = id_personne;
     }
 
-    public String getNom() {
-        return nom;
+    public String getLogin() {
+        return login;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getMot_de_passe() {
+        return mot_de_passe;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setMot_de_passe(String mot_de_passe) {
+        this.mot_de_passe = mot_de_passe;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
     
     

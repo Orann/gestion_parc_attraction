@@ -17,8 +17,8 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Liste des personnes :</span>
-                <a href="${pageContext.request.contextPath}/personne/add">Ajouter une nouvelle personne</a>
+                <span class="card-title">Liste des employés :</span>
+                <a href="${pageContext.request.contextPath}/employe/add">Ajouter une nouvelle personne</a>
                 <div class="row">
                     <div class="col s8 offset-s2">
                         <table class="striped centered responsive-table">
@@ -26,16 +26,18 @@
                                 <th>ID</th>
                                 <th>Prénom</th> 
                                 <th>Nom</th>
+                                <th>Login</th>
                                 <th>Action</th>
                             </tr>
-                            <c:forEach var="personne" items="${personnes}">
+                            <c:forEach var = "i" begin = "0" end = "${size-1}">
                                 <tr>
-                                    <td>${personne.id_personne}</td>
-                                    <td>${personne.prenom}</td> 
-                                    <td>${personne.nom}</td>
+                                    <td>${personnes.get(i).id_personne}</td>
+                                    <td>${personnes.get(i).prenom}</td> 
+                                    <td>${personnes.get(i).nom}</td>
+                                    <td>${employes.get(i).login}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/personne/edit/${personne.id_personne}">Modifier</a>
-                                        <a href="${pageContext.request.contextPath}/personne/delete/${personne.id_personne}">Supprimer</a>
+                                        <a href="${pageContext.request.contextPath}/employe/edit/${personnes.get(i).id_personne}">Modifier</a>
+                                        <a href="${pageContext.request.contextPath}/employe/delete/${personnes.get(i).id_personne}">Supprimer</a>
                                     </td>
                                 </tr>
                             </c:forEach>

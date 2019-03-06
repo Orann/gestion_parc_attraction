@@ -5,7 +5,7 @@
  */
 package com.INF853.tp2.Gestion_Parc_Attraction.dao;
 
-import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,21 +17,20 @@ import org.springframework.stereotype.Repository;
  *
  * @author Orann
  */
-@Repository("personneDAO")
-public class PersonneDAOImpl implements PersonneDAO {
-    
+@Repository("employeDAO")
+public class EmployeDAOImpl implements EmployeDAO{
     @Autowired
     private SessionFactory sessionFactory;
     
     @Override
-    public List<Personne> findAll() {
-        List<Personne> personnes = null;
+    public List<Employe> findAll() {
+        List<Employe> employes = null;
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            personnes = session.createQuery("from Personne").list();
+            employes = session.createQuery("from Employe").list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -42,18 +41,18 @@ public class PersonneDAOImpl implements PersonneDAO {
                 session.close();
             }            
         }
-        return personnes;
+        return employes;
     }
     
     @Override
-    public Personne find(int id) {
-        Personne personne = null;
+    public Employe find(int id) {
+        Employe employe = null;
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            personne = (Personne) session.createQuery("from Personne where id_personne = :id")
+            employe = (Employe) session.createQuery("from Employe where id_personne = :id")
                     .setInteger("id", id)
                     .uniqueResult();
             transaction.commit();
@@ -66,17 +65,41 @@ public class PersonneDAOImpl implements PersonneDAO {
                 session.close();
             }            
         }
-        return personne;
+        return employe;
     }
     
     @Override
-    public void create(Personne personne) {
+    public Employe find(String login) {
+        Employe employe = null;
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(personne);
+            employe = (Employe) session.createQuery("from Employe where login = :login")
+                    .setString("login", login)
+                    .uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }            
+        }
+        return employe;
+    }
+    
+    @Override
+    public void create(Employe employe) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            session.save(employe);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -90,13 +113,13 @@ public class PersonneDAOImpl implements PersonneDAO {
     }
     
     @Override
-    public void update(Personne personne) {
+    public void update(Employe employe) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(personne);
+            session.update(employe);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -127,5 +150,5 @@ public class PersonneDAOImpl implements PersonneDAO {
                 session.close();
             }            
         }
-    }    
+    }
 }
