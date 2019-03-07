@@ -4,6 +4,7 @@
     Author     : Orann
 --%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../template/header.jsp"%>
 <div class="row">
@@ -13,7 +14,8 @@
                 <span class="card-title">Connexion</span>
                 <f:form method="post" modelAttribute = "employe"
                         action = "${pageContext.request.contextPath}/login/login">
-                    <div class="row">
+                    <div class="row">                        
+                        <p class="red-text text-lighten-1">${erreur}</p>                        
                         <div class="input-field">
                             <i class="material-icons prefix">account_circle</i>
                             <f:input path="login" id="login" type="text" class="validate"/>

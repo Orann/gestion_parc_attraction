@@ -10,17 +10,31 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Ajout d'une personne</span>
-                <f:form method="post" modelAttribute = "personne" class = "s12"
-                        action = "${pageContext.request.contextPath}/personne/add">
+                <span class="card-title">Ajout d'un employe</span>
+                <f:form method="post" modelAttribute = "personne_employe" class = "s12"
+                        action = "${pageContext.request.contextPath}/employe/add">
                     <div class="row">
-                        <div class="input-field col s6">
-                            <f:input path="prenom" id="prenom" type="text" class="validate"/>
+                        <div class="input-field col s4">
+                            <f:input path="personne.prenom" id="prenom" type="text" class="validate"/>
                             <label for="prenom">Prénom</label>
                         </div>
-                        <div class="input-field col s6">
-                            <f:input path="nom" id="nom" type="text" class="validate"/>
+                        <div class="input-field col s4">
+                            <f:input path="personne.nom" id="nom" type="text" class="validate"/>
                             <label for="nom">Nom</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <f:input path="employe.type" id="type" type="text" class="validate"/>
+                            <label for="type">Type</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <f:input path="employe.login" id="login" type="text" class="validate"/>
+                            <label for="login">Login</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <f:input path="employe.mot_de_passe" id="mot_de_passe" type="text" class="validate"/>
+                            <label for="mot_de_passe">Mot de passe</label>
                         </div>
                     </div>
                     <div class="right-align">

@@ -78,6 +78,11 @@ public class PersonneDAOImpl implements PersonneDAO {
             transaction = session.beginTransaction();
             session.save(personne);
             transaction.commit();
+            /*transaction = session.beginTransaction();
+            int id_personne = session.createQuery("from Personne where id_personne = :id")
+                    .setInteger("id", id)
+                    .uniqueResult();
+            transaction.commit();*/
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

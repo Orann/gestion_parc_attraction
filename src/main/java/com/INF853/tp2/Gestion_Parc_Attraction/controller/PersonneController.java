@@ -45,7 +45,7 @@ public class PersonneController {
     }
     
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public String add(@PathVariable("id") int id){
+    public String delete(@PathVariable("id") int id){
         personneService.delete(id);
         return "redirect:/personne"; 
     }

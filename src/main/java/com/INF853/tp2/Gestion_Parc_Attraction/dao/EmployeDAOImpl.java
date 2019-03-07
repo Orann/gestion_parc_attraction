@@ -6,6 +6,7 @@
 package com.INF853.tp2.Gestion_Parc_Attraction.dao;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -93,13 +94,34 @@ public class EmployeDAOImpl implements EmployeDAO{
     }
     
     @Override
-    public void create(Employe employe) {
+    public void create(Personne personne, Employe employe) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.save(employe);
+            session.save(personne);
+            /*session.createSQLQuery("INSERT INTO `personne` (`id_personne`, `nom`, `prenom`) "
+                    + "VALUES (NULL, :nom, :prenom);")
+                    .setString("nom", personne.getNom())
+                    .setString("prenom", personne.getPrenom())
+                    .uniqueResult();*/        
+            transaction.commit();
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            int id_personne = (int) session.createSQLQuery("SELECT MAX(id_personne) from personne")
+                    .uniqueResult();
+            transaction.commit();
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            employe.setId_personne(id_personne);
+            session.createSQLQuery("INSERT INTO `employe` (`id_personne`, `login`, `mot_de_passe`, `type`)"
+                    + " VALUES (:id, :login, :mot_de_passe, :type)")
+                    .setInteger("id", employe.getId_personne())
+                    .setString("login", employe.getLogin())
+                    .setString("mot_de_passe", employe.getMot_de_passe())
+                    .setString("type", employe.getType())
+                    .uniqueResult();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

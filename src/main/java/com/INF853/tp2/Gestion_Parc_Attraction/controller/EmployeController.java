@@ -7,6 +7,7 @@ package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.PersonneEmployeWrapper;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.EmployeService;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.PersonneService;
 import java.util.List;
@@ -35,6 +36,7 @@ public class EmployeController {
     public String index(ModelMap modelMap){
         List<Employe> employes = employeService.findAll();
         modelMap.put("size", employes.size());
+        System.out.println(employes.size());
         modelMap.put("employes", employes);
         modelMap.put("personnes", personneService.findAll());
         modelMap.put("title", "Accueil");
@@ -43,32 +45,38 @@ public class EmployeController {
     
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String add(ModelMap modelMap){
-        modelMap.put("personne", new Personne());
-        return "personne/add"; 
+        PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
+        modelMap.put("personne_employe", pew);
+        return "employe/add"; 
     }
     
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(@ModelAttribute("personne") Personne personne){
-        personneService.create(personne);
-        return "redirect:/personne"; 
+    public String add(@ModelAttribute("personne_employe") PersonneEmployeWrapper pew){
+        employeService.create(pew.getPersonne(), pew.getEmploye());
+        return "redirect:/employe"; 
     }
     
-    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public String add(@PathVariable("id") int id){
-        personneService.delete(id);
-        return "redirect:/personne"; 
+    @RequestMapping(value = "delete/{id_personne}", method = RequestMethod.GET)
+    public String delete(@PathVariable("id_personne") int id_personne){
+        employeService.delete(id_personne);
+        personneService.delete(id_personne);        
+        return "redirect:/employe"; 
     }
     
-    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable("id") int id, ModelMap modelMap){
-        modelMap.put("personne", personneService.find(id));
-        return "personne/edit"; 
+    @RequestMapping(value = "edit/{id_personne}", method = RequestMethod.GET)
+    public String edit(@PathVariable("id_personne") int id_personne, ModelMap modelMap){
+        PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
+        pew.setPersonne(personneService.find(id_personne));
+        pew.setEmploye(employeService.find(id_personne));
+        modelMap.put("personne_employe", pew);
+        return "employe/edit"; 
     }
     
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String edit(@ModelAttribute("personne") Personne personne){
-        personneService.update(personne);
-        return "redirect:/personne"; 
+    public String edit(@ModelAttribute("personne_employe") PersonneEmployeWrapper pew){
+        personneService.update(pew.getPersonne());
+        employeService.update(pew.getEmploye());
+        return "redirect:/employe"; 
     }
     
 }

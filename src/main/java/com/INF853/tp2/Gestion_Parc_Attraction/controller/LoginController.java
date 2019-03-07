@@ -44,9 +44,11 @@ public class LoginController {
             if (employe_to_check.getMot_de_passe().equals(employe.getMot_de_passe())) {
                 retour = "redirect:/employe";
             } else {
+                modelMap.put("erreur", "Login ou mot de passe incorect.");
                 retour = "login/index";
             }
         } else {
+            modelMap.put("erreur", "Login ou mot de passe incorect.");
             retour = "login/index";
         }
 

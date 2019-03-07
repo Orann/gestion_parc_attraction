@@ -7,6 +7,7 @@ package com.INF853.tp2.Gestion_Parc_Attraction.service;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.dao.EmployeDAO;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,8 +40,8 @@ public class EmployeServiceImpl implements EmployeService {
     }
 
     @Override
-    public void create(Employe employe) {
-        this.employeDAO.create(employe);
+    public void create(Personne personne, Employe employe) {
+        this.employeDAO.create(personne, employe);
     }
 
     @Override

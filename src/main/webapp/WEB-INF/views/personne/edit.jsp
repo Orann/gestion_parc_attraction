@@ -23,7 +23,7 @@
                             <f:input path="nom" id="nom" type="text" class="validate"/>
                             <label for="nom">Nom</label>
                         </div>
-                            <f:hidden path="id"/>
+                            <f:hidden path="id_personne"/>
                     </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Modifier

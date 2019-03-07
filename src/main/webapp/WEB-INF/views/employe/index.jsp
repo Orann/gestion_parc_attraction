@@ -27,20 +27,24 @@
                                 <th>Prénom</th> 
                                 <th>Nom</th>
                                 <th>Login</th>
+                                <th>Type</th>
                                 <th>Action</th>
                             </tr>
-                            <c:forEach var = "i" begin = "0" end = "${size-1}">
-                                <tr>
-                                    <td>${personnes.get(i).id_personne}</td>
-                                    <td>${personnes.get(i).prenom}</td> 
-                                    <td>${personnes.get(i).nom}</td>
-                                    <td>${employes.get(i).login}</td>
-                                    <td>
-                                        <a href="${pageContext.request.contextPath}/employe/edit/${personnes.get(i).id_personne}">Modifier</a>
-                                        <a href="${pageContext.request.contextPath}/employe/delete/${personnes.get(i).id_personne}">Supprimer</a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <c:if test="${size != 0}">
+                                <c:forEach var = "i" begin = "0" end = "${size-1}">
+                                    <tr>
+                                        <td>${personnes.get(i).id_personne}</td>
+                                        <td>${personnes.get(i).prenom}</td> 
+                                        <td>${personnes.get(i).nom}</td>
+                                        <td>${employes.get(i).login}</td>
+                                        <td>${employes.get(i).type}</td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/employe/edit/${personnes.get(i).id_personne}">Modifier</a>
+                                            <a href="${pageContext.request.contextPath}/employe/delete/${personnes.get(i).id_personne}">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
                         </table>
                     </div>
                 </div>

@@ -59,6 +59,13 @@ public class Employe{
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Employe{" + "id_personne=" + id_personne + ", login=" + login + ", mot_de_passe=" + mot_de_passe + ", type=" + type + '}';
+    }
+    
+    
     
     
 }

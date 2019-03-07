@@ -6,6 +6,7 @@
 package com.INF853.tp2.Gestion_Parc_Attraction.service;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public interface EmployeService {
     
     public Employe find(String login);
     
-    public void create(Employe employe);
+    public void create(Personne personne, Employe employe);
     
     public void update(Employe employe);
     
