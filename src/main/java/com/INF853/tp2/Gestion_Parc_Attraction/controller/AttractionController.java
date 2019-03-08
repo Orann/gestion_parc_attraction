@@ -7,7 +7,6 @@ package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Attraction;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.AttractionService;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,12 +63,17 @@ public class AttractionController {
     public String edit(@PathVariable("id") int id, ModelMap modelMap){
         modelMap.addAttribute("attraction", new Attraction());
         modelMap.put("attraction", attractionService.find(id));
+        Map<String, String> types = new HashMap<String, String>();
+        types.put("Forte", "Forte");
+        types.put("Calme", "Calme");
+        types.put("Montagne russe", "Montagne russe");
+        modelMap.put("type", types);
         return "attraction/edit"; 
     }
     
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute("attraction") Attraction attraction){
         attractionService.update(attraction);
-        return "redirect:/attracion"; 
+        return "redirect:/attraction"; 
     }
 }

@@ -3,7 +3,6 @@
     Created on : 25 févr. 2019, 19 h 45 min 07 s
     Author     : Pierre
 --%>
-
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 
 <%@ include file="../template/header.jsp"%>
@@ -20,15 +19,9 @@
                             <label for="nom">Nom</label>
                         </div>
                         <div class="input-field col s6">
-                            <select>
-                              <option path="type" id="type" value="" disabled selected>Type</option>
-                              <option path="type" id="type" value="Forte">Forte</option>
-                              <option path="type" id="type" value="Calme">Calme</option>
-                              <option path="type" id="type" value="Montagne Russe">Montagne Russe</option>
-                            </select>
-                            <label for="type">Materialize Select</label>
-                          </div>
-                            <f:hidden path="id"/>
+                            <f:select path="type" id="type" items="${type}" class="validate"/>
+                            <label for="type">Type</label>
+                        </div>
                     </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Modifier

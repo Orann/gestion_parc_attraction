@@ -19,9 +19,9 @@
                             <label for="nom">Nom</label>
                         </div>  
                         <div class="input-field col s6">
-                            <f:select path="type" id="type" items="${type}"/>
+                            <f:select path="type" id="type" items="${type}" class="validate"/>
                             <label for="type">Type</label>
-                          </div>
+                        </div>
                     </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Créer
