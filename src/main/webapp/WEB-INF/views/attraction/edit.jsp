@@ -22,6 +22,7 @@
                             <f:select path="type" id="type" items="${type}" class="validate"/>
                             <label for="type">Type</label>
                         </div>
+                            <f:hidden path="id"/>
                     </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Modifier
