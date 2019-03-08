@@ -7,6 +7,10 @@ package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Attraction;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.AttractionService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,6 +40,11 @@ public class AttractionController {
     public String add(ModelMap modelMap){
         modelMap.addAttribute("attraction", new Attraction());
         modelMap.put("attraction", new Attraction());
+        Map<String, String> types = new HashMap<String, String>();
+        types.put("Forte", "Forte");
+        types.put("Calme", "Calme");
+        types.put("Montagne russe", "Montagne russe");
+        modelMap.put("type", types);
         return "attraction/add"; 
     }
     

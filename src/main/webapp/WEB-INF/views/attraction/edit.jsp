@@ -20,9 +20,14 @@
                             <label for="nom">Nom</label>
                         </div>
                         <div class="input-field col s6">
-                            <f:input path="type" id="type" type="text" class="validate"/>
-                            <label for="type">Type</label>
-                        </div>
+                            <select>
+                              <option path="type" id="type" value="" disabled selected>Type</option>
+                              <option path="type" id="type" value="Forte">Forte</option>
+                              <option path="type" id="type" value="Calme">Calme</option>
+                              <option path="type" id="type" value="Montagne Russe">Montagne Russe</option>
+                            </select>
+                            <label for="type">Materialize Select</label>
+                          </div>
                             <f:hidden path="id"/>
                     </div>
                     <div class="right-align">

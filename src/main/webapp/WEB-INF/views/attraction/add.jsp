@@ -17,11 +17,11 @@
                         <div class="input-field col s6">
                             <f:input path="nom" id="nom" type="text" class="validate"/>
                             <label for="nom">Nom</label>
-                        </div>
+                        </div>  
                         <div class="input-field col s6">
-                            <f:input path="type" id="type" type="text" class="validate"/>
+                            <f:select path="type" id="type" items="${type}"/>
                             <label for="type">Type</label>
-                        </div>
+                          </div>
                     </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Créer
