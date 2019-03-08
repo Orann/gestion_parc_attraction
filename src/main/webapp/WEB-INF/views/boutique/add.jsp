@@ -1,6 +1,6 @@
 <%-- 
     Document   : add
-    Created on : 25 févr. 2019, 18 h 33 min 21 s
+    Created on : 25 fï¿½vr. 2019, 18 h 33 min 21 s
     Author     : Pierre
 --%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
@@ -24,7 +24,7 @@
                           </div>
                     </div>
                     <div class="right-align">
-                        <button class="btn waves-effect waves-light" value="creer" type="submit">Créer
+                        <button class="btn waves-effect waves-light" value="creer" type="submit">Crï¿½er
                                 <i class="material-icons right">send</i>
                         </button>
                     </div>
