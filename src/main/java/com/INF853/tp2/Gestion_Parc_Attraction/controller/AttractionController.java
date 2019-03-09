@@ -7,7 +7,9 @@ package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Attraction;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.AttractionService;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,10 +36,14 @@ public class AttractionController {
         return "attraction/index"; 
     }
     
-    @RequestMapping(method = RequestMethod.GET)
-    public String searchByName(@PathVariable("Recherche/{name}") String name, ModelMap modelMap){
-        modelMap.addAttribute("attraction", new Attraction());
-        modelMap.put("searchattractions", attractionService.findByName(name));
+    @RequestMapping(value = "search/{nom}", method = RequestMethod.GET)
+    public String searchByName(@PathVariable("nom") String nom, ModelMap modelMap){
+        List<Attraction> searchattractions = new ArrayList<Attraction>();
+        Attraction attraction = new Attraction();
+        searchattractions.add(attraction);
+        modelMap.addAttribute("searchattractions", new ArrayList<Attraction>());
+        //modelMap.put("searchattractions", attractionService.findByName(nom));
+        modelMap.put("searchattractions", searchattractions);
         return "attraction/search"; 
     }
     

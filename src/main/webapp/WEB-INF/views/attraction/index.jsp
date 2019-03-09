@@ -18,37 +18,34 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Liste des attractions :</span>
                 <div class="input-field">
-                    
-                    <f:input id="search" type="search" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    
-                    <a href="${pageContext.request.contextPath}/attraction/add">Ajouter une nouvelle attraction</a>
-                    <div class="row">
-                        <i class="material-icons">close</i>
-                            <div class="col s8 offset-s2">
-                                <table class="striped centered responsive-table">
-                                    <tr>
-                                        <th><center>ID</center></th>
-                                        <th><center>Nom</center></th> 
-                                        <th><center>Type</center></th>
-                                        <th><center>Action</center></th>
-                                    </tr>
-                                    <c:forEach var="attraction" items="${attractions}">
-                                        <tr>
-                                            <td>${attraction.id}</td>
-                                            <td>${attraction.nom}</td> 
-                                            <td>${attraction.type}</td>
-                                            <td>
-                                                <a href="${pageContext.request.contextPath}/attraction/edit/${attraction.id}">Modifier</a>
-                                                <a href="${pageContext.request.contextPath}/attraction/delete/${attraction.id}">Supprimer</a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
-                            </div>
-                    </f:form>
+                    <f:input path="nom" id="nom" type="text" class="validate"/>
+                    <label for="nom">Nom</label>
+                    <i class="material-icons">close</i>
+                </div>
+                <span class="card-title">Liste des attractions :</span>
+                <a href="${pageContext.request.contextPath}/attraction/add">Ajouter une nouvelle attraction</a>
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <table class="striped centered responsive-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th> 
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                            <c:forEach var="attraction" items="${attractions}">
+                                <tr>
+                                    <td>${attraction.id}</td>
+                                    <td>${attraction.nom}</td> 
+                                    <td>${attraction.type}</td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/attraction/edit/${attraction.id}">Modifier</a>
+                                        <a href="${pageContext.request.contextPath}/attraction/delete/${attraction.id}">Supprimer</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
                     </div>
                 </div>
             </div>

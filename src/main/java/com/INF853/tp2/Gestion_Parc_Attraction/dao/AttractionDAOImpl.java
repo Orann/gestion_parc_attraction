@@ -70,14 +70,14 @@ public class AttractionDAOImpl implements AttractionDAO {
     }
     
     @Override
-    public List<Attraction> findByName(String name) {
+    public List<Attraction> findByName(String nom) {
         List<Attraction> searchattractions = null;
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            //searchattractions = session.createQuery("from Attraction where name = :name").list();
+            searchattractions = session.createQuery("from Attraction where name = :nom").list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

@@ -17,7 +17,7 @@ public interface AttractionDAO {
     
     public Attraction find(int id);
     
-    public List<Attraction> findByName(String name);
+    public List<Attraction> findByName(String nom);
     
     public void create(Attraction attraction);
     
