@@ -8,7 +8,6 @@ package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Attraction;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.AttractionService;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,9 +35,9 @@ public class AttractionController {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String searchByName(@PathVariable("name") String name, ModelMap modelMap){
+    public String searchByName(@PathVariable("Recherche/{name}") String name, ModelMap modelMap){
+        modelMap.addAttribute("attraction", new Attraction());
         modelMap.put("searchattractions", attractionService.findByName(name));
-        modelMap.put("title", "Recherche");
         return "attraction/search"; 
     }
     

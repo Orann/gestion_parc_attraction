@@ -77,7 +77,7 @@ public class AttractionDAOImpl implements AttractionDAO {
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            searchattractions = session.createQuery("from Attraction where name = :name").list();
+            //searchattractions = session.createQuery("from Attraction where name = :name").list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

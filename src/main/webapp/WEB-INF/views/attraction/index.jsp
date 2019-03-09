@@ -23,8 +23,6 @@
                     
                     <f:input id="search" type="search" required>
                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <div class="right-align">
-                    </div>
                     
                     <a href="${pageContext.request.contextPath}/attraction/add">Ajouter une nouvelle attraction</a>
                     <div class="row">
