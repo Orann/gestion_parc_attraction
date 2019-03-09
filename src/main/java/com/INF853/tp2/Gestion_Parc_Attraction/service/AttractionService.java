@@ -17,7 +17,7 @@ public interface AttractionService {
     
     public Attraction find(int id);
     
-    public Attraction findByName(String name);
+    public List<Attraction> findByName(String name);
     
     public void create(Attraction attraction);
     

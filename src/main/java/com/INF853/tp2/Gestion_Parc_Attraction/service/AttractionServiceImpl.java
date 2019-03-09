@@ -34,7 +34,7 @@ public class AttractionServiceImpl implements AttractionService {
     }
     
     @Override
-    public Attraction findByName(String name) {
+    public List<Attraction> findByName(String name) {
         return this.attractionDAO.findByName(name);
     }
 
