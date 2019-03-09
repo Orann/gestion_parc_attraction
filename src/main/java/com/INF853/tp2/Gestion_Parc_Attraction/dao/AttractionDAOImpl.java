@@ -70,6 +70,30 @@ public class AttractionDAOImpl implements AttractionDAO {
     }
     
     @Override
+    public Attraction findByName(String name) {
+        Attraction attraction = null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            attraction = (Attraction) session.createQuery("from Attraction where name = :name")
+                    .setString("name", name)
+                    .uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }            
+        }
+        return attraction;
+    }
+    
+    @Override
     public void create(Attraction attraction) {
         Session session = null;
         Transaction transaction = null;

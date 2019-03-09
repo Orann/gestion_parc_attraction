@@ -17,6 +17,8 @@ public interface AttractionDAO {
     
     public Attraction find(int id);
     
+    public Attraction find(String name);
+    
     public void create(Attraction attraction);
     
     public void update(Attraction attraction);

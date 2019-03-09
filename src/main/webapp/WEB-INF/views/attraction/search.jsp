@@ -35,7 +35,7 @@
                                         <th><center>Type</center></th>
                                         <th><center>Action</center></th>
                                     </tr>
-                                    <c:forEach var="attraction" items="${attractions}">
+                                    <c:forEach var="attraction" items="${searchattractions}">
                                         <tr>
                                             <td>${attraction.id}</td>
                                             <td>${attraction.nom}</td> 
