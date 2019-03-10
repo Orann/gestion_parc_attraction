@@ -32,9 +32,16 @@ public class AttractionController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap){
         modelMap.put("attractions", attractionService.findAll());
+        modelMap.put("searchattractions", new ArrayList<Attraction>());
         modelMap.put("title", "Accueil");
         return "attraction/index"; 
     }
+    
+    /*@RequestMapping(value = "index", method = RequestMethod.POST)
+    public String index(@ModelAttribute("nom") String nom){
+        return "redirect:/search"; 
+    }*/
+    
     
     @RequestMapping(value = "search/{nom}", method = RequestMethod.GET)
     public String search(@PathVariable("nom") String nom, ModelMap modelMap){
