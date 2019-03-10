@@ -18,12 +18,15 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <div class="input-field">
-                    <f:input path="nom" id="nom" type="text" class="validate"/>
-                    <label for="nom">Nom</label> 
-                    <a href="${pageContext.request.contextPath}/attraction/search/${search}">Modifier</a>
-                    <i class="material-icons">close</i>
-                </div>
+                 <f:form method="get" modelAttribute = "searchattractions" class = "s12"
+                        action = "${pageContext.request.contextPath}/attraction/search">
+                    <div class="input-field">
+                        <f:input path="nom" id="nom" type="text" class="validate"/>
+                        <label for="nom">Nom</label> 
+                        <a href="${pageContext.request.contextPath}/attraction/search/">Rechercher</a>
+                        <i class="material-icons">close</i>
+                    </div>
+                 </f:form>
                 <span class="card-title">Liste des attractions :</span>
                 <a href="${pageContext.request.contextPath}/attraction/add">Ajouter une nouvelle attraction</a>
                 <div class="row">

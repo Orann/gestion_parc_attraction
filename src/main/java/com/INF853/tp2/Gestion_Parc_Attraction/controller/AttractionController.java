@@ -38,7 +38,6 @@ public class AttractionController {
     
     @RequestMapping(value = "search/{nom}", method = RequestMethod.GET)
     public String search(@PathVariable("nom") String nom, ModelMap modelMap){
-        modelMap.addAttribute("searchattractions", new ArrayList<Attraction>());
         modelMap.put("searchattractions", attractionService.findByName(nom));
         return "attraction/search"; 
     }
