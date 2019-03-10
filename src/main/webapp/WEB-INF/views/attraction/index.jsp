@@ -20,7 +20,8 @@
             <div class="card-content">
                 <div class="input-field">
                     <f:input path="nom" id="nom" type="text" class="validate"/>
-                    <label for="nom">Nom</label>
+                    <label for="nom">Nom</label> 
+                    <a href="${pageContext.request.contextPath}/attraction/search/${search}">Modifier</a>
                     <i class="material-icons">close</i>
                 </div>
                 <span class="card-title">Liste des attractions :</span>

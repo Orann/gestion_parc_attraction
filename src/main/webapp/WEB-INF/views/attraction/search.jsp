@@ -28,7 +28,7 @@
                                 <th>Type</th>
                                 <th>Action</th>
                             </tr>
-                            <c:forEach var="attraction" items="${searchattractions}">
+                            <c:forEach path="searchattractions" var="attraction" items="${searchattractions}">
                                 <tr>
                                     <td>${attraction.id}</td>
                                     <td>${attraction.nom}</td> 
