@@ -6,6 +6,7 @@
 package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Attraction;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Search;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.AttractionService;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,13 +33,20 @@ public class AttractionController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap){
         modelMap.put("attractions", attractionService.findAll());
+        modelMap.put("recherche", new Search());
         modelMap.put("title", "Accueil");
         return "attraction/index"; 
     }
     
+    @RequestMapping(value = "index", method = RequestMethod.POST)
+    public String index(@ModelAttribute("recherche") Search recherche, String nom){
+        recherche.setNom(nom);
+        return "redirect:/search"; 
+    }
+    
     @RequestMapping(value = "search/{nom}", method = RequestMethod.GET)
-    public String search(@PathVariable("nom") String nom, ModelMap modelMap){
-        modelMap.put("searchattractions", attractionService.findByName(nom));
+    public String search(@PathVariable("recherche") Search recherche, ModelMap modelMap){
+        modelMap.put("searchattractions", attractionService.findByName(recherche.getNom()));
         return "attraction/search"; 
     }
     

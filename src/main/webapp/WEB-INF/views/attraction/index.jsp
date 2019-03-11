@@ -18,13 +18,12 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <f:form method="post" modelAttribute = "searchattractions" class = "s12"
+                <f:form method="post" modelAttribute = "recherche" class = "s12"
                         action = "${pageContext.request.contextPath}/attraction/search/">
                     <div class="input-field">
-                        <input id="nom" type="text" required>
+                        <f:input path="nom" id="nom" type="text" class="validate"/>
                         <label class="label-icon" for="nom"><i class="material-icons">search</i></label>
                     </div>
-                    <div class="right-align">
                 </f:form>
                 <span class="card-title">Liste des attractions :</span>
                 <a href="${pageContext.request.contextPath}/attraction/add">Ajouter une nouvelle attraction</a>
