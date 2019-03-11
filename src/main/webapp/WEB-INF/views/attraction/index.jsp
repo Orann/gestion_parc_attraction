@@ -18,8 +18,8 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <f:form method="post" modelAttribute = "recherche" class = "s12"
-                        action = "${pageContext.request.contextPath}/attraction/search/">
+                <f:form method="get" modelAttribute = "recherche" class = "s12"
+                        action = "${pageContext.request.contextPath}/attraction/search/${recherche.nom}">
                     <div class="input-field">
                         <f:input path="nom" id="nom" type="text" class="validate"/>
                         <label class="label-icon" for="nom"><i class="material-icons">search</i></label>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -38,15 +39,10 @@ public class AttractionController {
         return "attraction/index"; 
     }
     
-    @RequestMapping(value = "index", method = RequestMethod.POST)
-    public String index(@ModelAttribute("recherche") Search recherche, String nom){
-        recherche.setNom(nom);
-        return "redirect:/search"; 
-    }
-    
-    @RequestMapping(value = "search/{nom}", method = RequestMethod.GET)
-    public String search(@PathVariable("recherche") Search recherche, ModelMap modelMap){
-        modelMap.put("searchattractions", attractionService.findByName(recherche.getNom()));
+    @RequestMapping(value = "search", method = RequestMethod.GET, params="nom")
+    public String search(@RequestParam("nom") String recherche, ModelMap modelMap){
+        modelMap.put("searchattractions", attractionService.findByName(recherche));
+        modelMap.put("nom", recherche);
         return "attraction/search"; 
     }
     
