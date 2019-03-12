@@ -44,7 +44,7 @@ public class EmployeController {
                 List<Employe> employes = employeService.findAll();
                 modelMap.put("size", employes.size());
                 modelMap.put("employes", employes);
-                modelMap.put("personnes", personneService.findAll());
+                modelMap.put("personnes", personneService.findAll("employe"));
                 modelMap.put("title", "Accueil");
                 return "employe/index";
             }
