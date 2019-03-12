@@ -80,6 +80,34 @@ public class PersonneDAOImpl implements PersonneDAO {
     }
     
     @Override
+    public List<Personne> findByPersonne(String nom) {
+        List<Personne> searchpersonnes = null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            //searchpersonnes = session.createQuery("from Personne where nom LIKE '%"+nom+"%' OR prenom LIKE '%"+nom+"%'").list();
+            searchpersonnes = session.createSQLQuery("SELECT p.id_personne, nom, prenom FROM `personne` p JOIN employe c ON p.id_personne = c.id_personne where nom LIKE '%"+nom+"%' OR prenom LIKE '%"+nom+"%' OR login LIKE '%"+nom+"%' OR type LIKE '%"+nom+"%'")
+                    .addScalar("id_personne", new IntegerType())
+                    .addScalar("nom", new StringType())
+                    .addScalar("prenom", new StringType())
+                    .setResultTransformer(Transformers.aliasToBean(Personne.class))
+                    .list();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }            
+        }
+        return searchpersonnes;
+    }
+    
+    @Override
     public void create(Personne personne) {
         Session session = null;
         Transaction transaction = null;

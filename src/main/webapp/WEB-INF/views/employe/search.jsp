@@ -1,13 +1,13 @@
 <%-- 
     Document   : index
     Created on : 23 févr. 2019, 22 h 59 min 14 s
-    Author     : Orann
+    Author     : Pierre
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,18 +18,7 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <f:form method="get" modelAttribute = "recherche" class = "s12"
-                        action = "${pageContext.request.contextPath}/employe/search/${recherche.nom}">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <f:input path="nom" id="nom" type="text" class="validate"/>
-                            <label class="label-icon" for="nom"><i class="material-icons">search</i></label>
-                        </div>
-                    </div>
-                </f:form>
-                <span class="card-title">Liste des employés :</span>
-                <a href="${pageContext.request.contextPath}/employe/add">Ajouter une nouvelle personne</a>
-                ${cookies}
+                <span class="card-title">Résultat de recherche pour ${nom} :</span>
                 <div class="row">
                     <div class="col s8 offset-s2">
                         <table class="striped centered responsive-table">
@@ -41,8 +30,8 @@
                                 <th><center>Type</center></th>
                                 <th><center>Action</center></th>
                             </tr>
-                            <c:if test="${size != 0}">
-                                <c:forEach var = "i" begin = "0" end = "${size-1}">
+                            <c:if test="${sizeE != 0}">
+                                <c:forEach var = "i" begin = "0" end = "${sizeE-1}">
                                     <tr>
                                         <td>${personnes.get(i).id_personne}</td>
                                         <td>${personnes.get(i).prenom}</td> 
@@ -65,4 +54,3 @@
     </div>
 </div>
 <%@ include file="../template/footer.jsp"%>
-

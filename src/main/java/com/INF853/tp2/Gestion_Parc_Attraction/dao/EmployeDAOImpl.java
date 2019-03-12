@@ -11,6 +11,10 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.transform.Transformers;
+import org.hibernate.type.FloatType;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -91,6 +95,37 @@ public class EmployeDAOImpl implements EmployeDAO{
             }            
         }
         return employe;
+    }
+    
+    @Override
+    public List<Employe> findByEmploye(String nom) {
+        List<Employe> searchemployes = null;
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            //searchemployes = session.createQuery("from Employe where login LIKE '%"+nom+"%' OR type LIKE '%"+nom+"%'").list();
+            searchemployes = session.createSQLQuery("SELECT c.id_personne, login, type, adresse, age, salaire FROM `personne` p JOIN employe c ON p.id_personne = c.id_personne where nom LIKE '%"+nom+"%' OR prenom LIKE '%"+nom+"%' OR login LIKE '%"+nom+"%' OR type LIKE '%"+nom+"%'")
+                    .addScalar("id_personne", new IntegerType())
+                    .addScalar("login", new StringType())
+                    .addScalar("type", new StringType())
+                    .addScalar("age", new IntegerType())
+                    .addScalar("adresse", new StringType())
+                    .addScalar("salaire", new FloatType())
+                    .setResultTransformer(Transformers.aliasToBean(Employe.class))
+                    .list();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }            
+        }
+        return searchemployes;
     }
     
     @Override

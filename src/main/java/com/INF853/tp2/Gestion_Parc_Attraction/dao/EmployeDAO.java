@@ -20,6 +20,8 @@ public interface EmployeDAO {
     
     public Employe find(String login);
     
+    public List<Employe> findByEmploye(String nom);
+    
     public void create(Personne personne, Employe employe);
     
     public void update(Employe employe);

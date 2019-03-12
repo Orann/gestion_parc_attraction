@@ -38,6 +38,11 @@ public class EmployeServiceImpl implements EmployeService {
     public Employe find(String login) {
         return this.employeDAO.find(login);
     }
+    
+    @Override
+    public List<Employe> findByEmploye(String nom) {
+        return this.employeDAO.findByEmploye(nom);
+    }
 
     @Override
     public void create(Personne personne, Employe employe) {

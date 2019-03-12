@@ -17,6 +17,8 @@ public interface PersonneService {
     
     public Personne find(int id);
     
+    public List<Personne> findByPersonne(String nom);
+    
     public void create(Personne personne);
     
     public void update(Personne personne);

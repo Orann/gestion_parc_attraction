@@ -32,6 +32,11 @@ public class PersonneServiceImpl implements PersonneService {
     public Personne find(int id) {
         return this.personneDAO.find(id);
     }
+    
+    @Override
+    public List<Personne> findByPersonne(String nom) {
+        return this.personneDAO.findByPersonne(nom);
+    }
 
     @Override
     public void create(Personne personne) {

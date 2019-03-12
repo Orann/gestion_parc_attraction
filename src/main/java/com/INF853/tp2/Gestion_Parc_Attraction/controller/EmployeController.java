@@ -8,6 +8,7 @@ package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.PersonneEmployeWrapper;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Search;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.EmployeService;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.PersonneService;
 import java.util.HashMap;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -52,6 +54,7 @@ public class EmployeController {
 
                 modelMap.put("size", employes.size());
                 System.out.println(employes.size());
+                modelMap.put("recherche", new Search());
                 modelMap.put("employes", employes);
                 modelMap.put("personnes", personnes);
                 modelMap.put("title", "Gestion Employe");
@@ -59,6 +62,23 @@ public class EmployeController {
             }
         }
         return "redirect:/login";     
+    }
+    
+    @RequestMapping(value = "search", method = RequestMethod.GET, params="nom")
+    public String search(@RequestParam("nom") String recherche, ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_du_personnel") || cookies[2].getValue().equals("Administrateur")) {
+                List<Employe> employes = employeService.findByEmploye(recherche);
+                List<Personne> personnes = personneService.findByPersonne(recherche);
+                modelMap.put("personnes", personnes);
+                modelMap.put("employes", employes);
+                modelMap.put("sizeE", employes.size());
+                modelMap.put("nom", recherche);
+                return "employe/search";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "add", method = RequestMethod.GET)
