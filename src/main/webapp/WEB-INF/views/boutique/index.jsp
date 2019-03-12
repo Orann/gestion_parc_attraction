@@ -23,10 +23,10 @@
                     <div class="col s8 offset-s2">
                         <table class="striped centered responsive-table">
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th> 
-                                <th>Type</th>
-                                <th>Action</th>
+                                <th><center>ID</center></th>
+                                <th><center>Nom</center></th> 
+                                <th><center>Type</center></th>
+                                <th><center>Action</center></th>
                             </tr>
                             <c:forEach var="boutique" items="${boutiques}">
                                 <tr>

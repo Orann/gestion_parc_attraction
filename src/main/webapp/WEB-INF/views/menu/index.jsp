@@ -15,7 +15,7 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Bienvenue ${cookieLogin}</span>
+                <span class="card-title">Bonjour ${cookieLogin}</span>
                 <c:if test="${cookieType == 'Administrateur'}">
                     <br><a href="${pageContext.request.contextPath}/attraction/">Acceder aux attractions</a>
                     <br><a href="${pageContext.request.contextPath}/boutique/">Acceder aux boutiques</a>

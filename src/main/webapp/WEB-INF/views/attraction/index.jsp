@@ -20,9 +20,11 @@
             <div class="card-content">
                 <f:form method="get" modelAttribute = "recherche" class = "s12"
                         action = "${pageContext.request.contextPath}/attraction/search/${recherche.nom}">
-                    <div class="input-field">
-                        <f:input path="nom" id="nom" type="text" class="validate"/>
-                        <label class="label-icon" for="nom"><i class="material-icons">search</i></label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <f:input path="nom" id="nom" type="text" class="validate"/>
+                            <label class="label-icon" for="nom"><i class="material-icons">search</i></label>
+                        </div>
                     </div>
                 </f:form>
                 <span class="card-title">Liste des attractions :</span>
@@ -31,10 +33,10 @@
                     <div class="col s8 offset-s2">
                         <table class="striped centered responsive-table">
                             <tr>
-                                <th>ID</th>
-                                <th>Nom</th> 
-                                <th>Type</th>
-                                <th>Action</th>
+                                <th><center>ID</center></th>
+                                <th><center>Nom</center></th> 
+                                <th><center>Type</center></th>
+                                <th><center>Action</center></th>
                             </tr>
                             <c:forEach var="attraction" items="${attractions}">
                                 <tr>
