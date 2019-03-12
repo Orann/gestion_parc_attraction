@@ -17,7 +17,6 @@
             <div class="card-content">
                 <span class="card-title">Bienvenue sur notre application web de gestion de parc d'attraction !</span>
                 <a href="${pageContext.request.contextPath}/login/">Cliquer ici pour vous connecter</a>
-                ${cookies}
             </div>
         </div>
     </div>

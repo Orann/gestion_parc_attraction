@@ -56,7 +56,7 @@ public class LoginController {
                 cookieType.setMaxAge(24 * 60 * 60);
                 cookieType.setPath("/");
                 response.addCookie(cookieType);
-                retour = "redirect:/employe";
+                retour = "redirect:/menu";
             } else {
                 modelMap.put("erreur", "Login ou mot de passe incorect.");
                 retour = "login/index";

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author Pierre
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("menu")
 public class MenuController {
     
     @RequestMapping(method = RequestMethod.GET)
@@ -28,15 +28,10 @@ public class MenuController {
                     || cookies[2].getValue().equals("Gerant_des_boutiques") || cookies[2].getValue().equals("Administrateur")){
                  modelMap.put("cookieLogin", cookies[1].getValue());
                  modelMap.put("cookieType", cookies[2].getValue());
-                 modelMap.put("title", "Accueil");        
-                return "welcome/index"; 
+                 modelMap.put("title", "Menu");        
+                return "menu/index"; 
             }
         }
         return "redirect:/";
-    }
-    
-    @RequestMapping(value = "deconnexion", method = RequestMethod.GET)
-    public String deconnexion(){
-        return  "redirect:/"; 
     }
 }

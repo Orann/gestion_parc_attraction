@@ -37,7 +37,7 @@ public class BoutiqueController {
         if(cookies.length > 1) {
             if(cookies[2].getValue().equals("Gerant_des_boutiques") || cookies[2].getValue().equals("Administrateur")) {
                 modelMap.put("boutiques", boutiqueService.findAll());
-                modelMap.put("title", "Accueil");
+                modelMap.put("title", "Gestion boutique");
                 return "boutique/index";
             }
         }

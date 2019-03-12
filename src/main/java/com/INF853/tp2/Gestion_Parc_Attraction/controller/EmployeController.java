@@ -45,7 +45,7 @@ public class EmployeController {
                 modelMap.put("size", employes.size());
                 modelMap.put("employes", employes);
                 modelMap.put("personnes", personneService.findAll("employe"));
-                modelMap.put("title", "Accueil");
+                modelMap.put("title", "Gestion employes");
                 return "employe/index";
             }
         }

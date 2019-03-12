@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : 11 mars 2019, 23 h 28 min 59 s
-    Author     : Orann
+    Author     : Pierre
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,11 +15,21 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Bienvenue sur notre application web de gestion de parc d'attraction !</span>
-                <c:if test="${}">
-                    
+                <span class="card-title">Bienvenue ${cookieLogin}</span>
+                <c:if test="${cookieType == 'Administrateur'}">
+                    <br><a href="${pageContext.request.contextPath}/attraction/">Acceder aux attractions</a>
+                    <br><a href="${pageContext.request.contextPath}/boutique/">Acceder aux boutiques</a>
+                    <br><a href="${pageContext.request.contextPath}/employe/">Acceder aux employes</a>
                 </c:if>
-                ${cookies}
+                <c:if test="${cookieType == 'Gerant_des_attractions'}">
+                    <a href="${pageContext.request.contextPath}/attraction/">Acceder aux attractions</a>
+                </c:if>
+                <c:if test="${cookieType == 'Gerant_des_boutiques'}">
+                    <a href="${pageContext.request.contextPath}/boutique/">Acceder aux boutiques</a>
+                </c:if>
+                <c:if test="${cookieType == 'Gerant_du_personnel'}">
+                    <a href="${pageContext.request.contextPath}/employe/">Acceder au personnel</a>
+                </c:if>
             </div>
         </div>
     </div>

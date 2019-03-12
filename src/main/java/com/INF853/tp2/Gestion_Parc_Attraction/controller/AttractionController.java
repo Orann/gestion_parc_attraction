@@ -40,7 +40,7 @@ public class AttractionController {
             if(cookies[2].getValue().equals("Gerant_des_attractions") || cookies[2].getValue().equals("Administrateur")) {
                 modelMap.put("attractions", attractionService.findAll());
                 modelMap.put("recherche", new Search());
-                modelMap.put("title", "Accueil");
+                modelMap.put("title", "Gestion attraction");
                 return "attraction/index";
             }
         }
