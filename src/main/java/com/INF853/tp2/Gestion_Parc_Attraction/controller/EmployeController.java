@@ -38,8 +38,8 @@ public class EmployeController {
         modelMap.put("size", employes.size());
         System.out.println(employes.size());
         modelMap.put("employes", employes);
-        modelMap.put("personnes", personneService.findAll());
-        modelMap.put("title", "Accueil");
+        modelMap.put("personnes", personneService.findAll("employe"));
+        modelMap.put("title", "Gestion Employe");
         return "employe/index"; 
     }
     

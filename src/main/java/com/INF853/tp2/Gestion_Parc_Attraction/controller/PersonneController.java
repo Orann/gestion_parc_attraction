@@ -27,7 +27,7 @@ public class PersonneController {
     
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap){
-        modelMap.put("personnes", personneService.findAll());
+        modelMap.put("personnes", personneService.findAll("employe"));
         modelMap.put("title", "Accueil");
         return "personne/index"; 
     }

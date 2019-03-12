@@ -16,14 +16,14 @@ import javax.persistence.Table;
  * @author Orann
  */
 @Entity
-@Table(name = "personne")
-public class Personne {
+@Table(name = "client")
+public class Client {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_personne;
-    private String nom;
-    private String prenom;
+    private int nombre_demi_journee;   
+    private float prix_paye;
 
     public int getId_personne() {
         return id_personne;
@@ -33,19 +33,21 @@ public class Personne {
         this.id_personne = id_personne;
     }
 
-    public String getNom() {
-        return nom;
+    public int getNombre_demi_journee() {
+        return nombre_demi_journee;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNombre_demi_journee(int nombre_demi_journee) {
+        this.nombre_demi_journee = nombre_demi_journee;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public float getPrix_paye() {
+        return prix_paye;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setPrix_paye(float prix_paye) {
+        this.prix_paye = prix_paye;
     }
+    
+    
 }

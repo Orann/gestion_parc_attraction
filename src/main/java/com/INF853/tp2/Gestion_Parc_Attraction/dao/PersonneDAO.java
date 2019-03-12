@@ -13,7 +13,7 @@ import java.util.List;
  * @author Orann
  */
 public interface PersonneDAO {
-    public List<Personne> findAll();
+    public List<Personne> findAll(String nom);
     
     public Personne find(int id);
     

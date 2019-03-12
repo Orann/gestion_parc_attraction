@@ -17,9 +17,8 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Liste des employés :</span>
-                <a href="${pageContext.request.contextPath}/employe/add">Ajouter une nouvelle personne</a>
-                ${cookies}
+                <span class="card-title">Liste des clients dans le Parc :</span>
+                <a href="${pageContext.request.contextPath}/client/add">Ajouter un nouveau Client</a>
                 <div class="row">
                     <div class="col s8 offset-s2">
                         <table class="striped centered responsive-table">
@@ -27,8 +26,8 @@
                                 <th>ID</th>
                                 <th>Prénom</th> 
                                 <th>Nom</th>
-                                <th>Login</th>
-                                <th>Type</th>
+                                <th>Nombre de demi-journée</th>
+                                <th>Prix payé</th>
                                 <th>Action</th>
                             </tr>
                             <c:if test="${size != 0}">
@@ -37,11 +36,11 @@
                                         <td>${personnes.get(i).id_personne}</td>
                                         <td>${personnes.get(i).prenom}</td> 
                                         <td>${personnes.get(i).nom}</td>
-                                        <td>${employes.get(i).login}</td>
-                                        <td>${employes.get(i).type}</td>
+                                        <td>${clients.get(i).nombre_demi_journee}</td>
+                                        <td>${clients.get(i).prix_paye}</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/employe/edit/${personnes.get(i).id_personne}">Modifier</a>
-                                            <a href="${pageContext.request.contextPath}/employe/delete/${personnes.get(i).id_personne}">Supprimer</a>
+                                            <a href="${pageContext.request.contextPath}/client/edit/${personnes.get(i).id_personne}">Modifier</a>
+                                            <a href="${pageContext.request.contextPath}/client/delete/${personnes.get(i).id_personne}">Supprimer</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

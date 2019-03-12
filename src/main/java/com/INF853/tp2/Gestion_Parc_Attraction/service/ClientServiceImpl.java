@@ -5,7 +5,8 @@
  */
 package com.INF853.tp2.Gestion_Parc_Attraction.service;
 
-import com.INF853.tp2.Gestion_Parc_Attraction.dao.PersonneDAO;
+import com.INF853.tp2.Gestion_Parc_Attraction.dao.ClientDAO;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Client;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,35 +18,34 @@ import org.springframework.stereotype.Service;
  * @author Orann
  */
 @Service
-@Repository("personneService")
-public class PersonneServiceImpl implements PersonneService {
-    
+@Repository("clientService")
+public class ClientServiceImpl implements ClientService {
     @Autowired
-    private PersonneDAO personneDAO;
+    private ClientDAO clientDAO;
 
     @Override
-    public List<Personne> findAll(String nom) {
-        return this.personneDAO.findAll(nom);
+    public List<Client> findAll() {
+        return this.clientDAO.findAll();
     }
 
     @Override
-    public Personne find(int id) {
-        return this.personneDAO.find(id);
+    public Client find(int id) {
+        return this.clientDAO.find(id);
     }
 
     @Override
-    public void create(Personne personne) {
-        this.personneDAO.create(personne);
+    public void create(Personne personne, Client client) {
+        this.clientDAO.create(personne, client);
     }
 
     @Override
-    public void update(Personne personne) {
-        this.personneDAO.update(personne);    
+    public void update(Client client) {
+        this.clientDAO.update(client);    
     }
 
     @Override
     public void delete(int id) {
-        this.personneDAO.delete(id);
+        this.clientDAO.delete(id);
     }
     
 }

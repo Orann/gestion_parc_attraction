@@ -5,6 +5,7 @@
  */
 package com.INF853.tp2.Gestion_Parc_Attraction.service;
 
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Client;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
 
@@ -12,14 +13,14 @@ import java.util.List;
  *
  * @author Orann
  */
-public interface PersonneService {
-    public List<Personne> findAll(String nom);
+public interface ClientService {
+    public List<Client> findAll();
     
-    public Personne find(int id);
+    public Client find(int id);
     
-    public void create(Personne personne);
+    public void create(Personne personne, Client client);
     
-    public void update(Personne personne);
+    public void update(Client client);
     
     public void delete(int id);
 }

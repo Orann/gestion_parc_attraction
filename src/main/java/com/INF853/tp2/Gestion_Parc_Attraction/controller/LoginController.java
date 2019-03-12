@@ -6,14 +6,11 @@
 package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
-import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.EmployeService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,7 +36,6 @@ public class LoginController {
     public String login(@ModelAttribute("employe") Employe employe, ModelMap modelMap) {
         String retour = "redirect:/login";
         Employe employe_to_check = employeService.find(employe.getLogin());
-        System.out.println(employe.getLogin());
         if (employe_to_check != null) {
             if (employe_to_check.getMot_de_passe().equals(employe.getMot_de_passe())) {
                 retour = "redirect:/employe";

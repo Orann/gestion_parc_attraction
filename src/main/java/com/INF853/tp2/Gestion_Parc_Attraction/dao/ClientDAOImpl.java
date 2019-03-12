@@ -5,9 +5,10 @@
  */
 package com.INF853.tp2.Gestion_Parc_Attraction.dao;
 
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Client;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,24 +19,20 @@ import org.springframework.stereotype.Repository;
  *
  * @author Orann
  */
-@Repository("personneDAO")
-public class PersonneDAOImpl implements PersonneDAO {
-    
+@Repository("clientDAO")
+public class ClientDAOImpl implements ClientDAO{
     @Autowired
     private SessionFactory sessionFactory;
     
     @Override
-    public List<Personne> findAll(String nom) {
-        List<Personne> personnes = null;
+    public List<Client> findAll() {
+        List<Client> clients = null;
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            System.out.println(nom);
-            SQLQuery q = session.createSQLQuery("SELECT p.id_personne, nom, prenom FROM `personne` p JOIN "+nom+" c ON p.id_personne = c.id_personne");
-            System.out.println(q.list());
-            personnes = q.list();
+            clients = session.createQuery("from Client").list();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -46,18 +43,18 @@ public class PersonneDAOImpl implements PersonneDAO {
                 session.close();
             }            
         }
-        return personnes;
+        return clients;
     }
     
     @Override
-    public Personne find(int id) {
-        Personne personne = null;
+    public Client find(int id) {
+        Client client = null;
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            personne = (Personne) session.createQuery("from Personne where id_personne = :id")
+            client = (Client) session.createQuery("from Client where id_personne = :id")
                     .setInteger("id", id)
                     .uniqueResult();
             transaction.commit();
@@ -70,23 +67,38 @@ public class PersonneDAOImpl implements PersonneDAO {
                 session.close();
             }            
         }
-        return personne;
+        return client;
     }
     
     @Override
-    public void create(Personne personne) {
+    public void create(Personne personne, Client client) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(personne);
+            /*session.createSQLQuery("INSERT INTO `personne` (`id_personne`, `nom`, `prenom`) "
+                    + "VALUES (NULL, :nom, :prenom);")
+                    .setString("nom", personne.getNom())
+                    .setString("prenom", personne.getPrenom())
+                    .uniqueResult();*/        
             transaction.commit();
-            /*transaction = session.beginTransaction();
-            int id_personne = session.createQuery("from Personne where id_personne = :id")
-                    .setInteger("id", id)
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            int id_personne = (int) session.createSQLQuery("SELECT MAX(id_personne) from personne")
                     .uniqueResult();
-            transaction.commit();*/
+            transaction.commit();
+            session = sessionFactory.openSession();
+            transaction = session.beginTransaction();
+            client.setId_personne(id_personne);
+            session.createSQLQuery("INSERT INTO `client` (`id_personne`, `nombre_demi_journee`, `prix_paye`)"
+                    + " VALUES (:id, :nombre_demi_journee, :prix_paye)")
+                    .setInteger("id", client.getId_personne())
+                    .setInteger("nombre_demi_journee", client.getNombre_demi_journee())
+                    .setFloat("prix_paye", client.getPrix_paye())
+                    .uniqueResult();
+            transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -99,13 +111,13 @@ public class PersonneDAOImpl implements PersonneDAO {
     }
     
     @Override
-    public void update(Personne personne) {
+    public void update(Client client) {
         Session session = null;
         Transaction transaction = null;
         try {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
-            session.update(personne);
+            session.update(client);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -136,5 +148,6 @@ public class PersonneDAOImpl implements PersonneDAO {
                 session.close();
             }            
         }
-    }    
+    }
+    
 }
