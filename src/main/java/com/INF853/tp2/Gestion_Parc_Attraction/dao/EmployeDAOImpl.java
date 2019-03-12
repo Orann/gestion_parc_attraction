@@ -115,12 +115,15 @@ public class EmployeDAOImpl implements EmployeDAO{
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             employe.setId_personne(id_personne);
-            session.createSQLQuery("INSERT INTO `employe` (`id_personne`, `login`, `mot_de_passe`, `type`)"
-                    + " VALUES (:id, :login, :mot_de_passe, :type)")
+            session.createSQLQuery("INSERT INTO `employe` (`id_personne`, `login`, `mot_de_passe`, `type`, adresse, age, salaire)"
+                    + " VALUES (:id, :login, :mot_de_passe, :type, :adresse, :age, :salaire)")
                     .setInteger("id", employe.getId_personne())
                     .setString("login", employe.getLogin())
                     .setString("mot_de_passe", employe.getMot_de_passe())
                     .setString("type", employe.getType())
+                    .setString("adresse", employe.getAdresse())
+                    .setInteger("age", employe.getAge())
+                    .setFloat("salaire", employe.getSalaire())
                     .uniqueResult();
             transaction.commit();
         } catch (Exception e) {

@@ -37,6 +37,20 @@
                             <label for="mot_de_passe">Mot de passe</label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <f:input path="employe.adresse" id="adresse" type="text" class="validate"/>
+                            <label for="adresse">Adresse</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <f:input path="employe.age" id="age" type="number" class="validate"/>
+                            <label for="age">Age</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <f:input path="employe.salaire" id="salaire" type="text" class="validate"/>
+                            <label for="salaire">Salaire</label>
+                        </div>
+                    </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Créer
                                 <i class="material-icons right">send</i>

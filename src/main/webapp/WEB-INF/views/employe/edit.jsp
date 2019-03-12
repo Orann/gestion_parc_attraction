@@ -11,7 +11,7 @@
     <div class="col s8 offset-s2">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">Modification de ${personne.prenom} ${personne.nom}</span>
+                <span class="card-title">Modification de ${personne_employe.personne.prenom} ${personne_employe.personne.nom}</span>
                 <f:form method="post" modelAttribute = "personne_employe" class = "s12"
                         action = "${pageContext.request.contextPath}/employe/edit">
                     <div class="row">
@@ -36,6 +36,20 @@
                         <div class="input-field col s6">
                             <f:input path="employe.mot_de_passe" id="mot_de_passe" type="text" class="validate"/>
                             <label for="mot_de_passe">Mot de passe</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <f:input path="employe.adresse" id="adresse" type="text" class="validate"/>
+                            <label for="adresse">Adresse</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <f:input path="employe.age" id="age" type="number" class="validate"/>
+                            <label for="age">Age</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <f:input path="employe.salaire" id="salaire" type="text" class="validate"/>
+                            <label for="salaire">Salaire</label>
                         </div>
                     </div>
                     <f:hidden path="personne.id_personne"/>

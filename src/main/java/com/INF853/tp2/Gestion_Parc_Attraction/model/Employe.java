@@ -27,6 +27,10 @@ public class Employe{
     private String login;    
     private String mot_de_passe;
     private String type;
+    
+    private String adresse = null;
+    private int age = 0;
+    private float salaire = 0;
 
     public int getId_personne() {
         return id_personne;
@@ -60,12 +64,32 @@ public class Employe{
         this.type = type;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public float getSalaire() {
+        return salaire;
+    }
+
+    public void setSalaire(float salaire) {
+        this.salaire = salaire;
+    }
+
     @Override
     public String toString() {
         return "Employe{" + "id_personne=" + id_personne + ", login=" + login + ", mot_de_passe=" + mot_de_passe + ", type=" + type + '}';
-    }
-    
-    
-    
-    
+    } 
 }

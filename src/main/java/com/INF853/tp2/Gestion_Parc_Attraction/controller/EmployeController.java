@@ -11,8 +11,11 @@ import com.INF853.tp2.Gestion_Parc_Attraction.model.PersonneEmployeWrapper;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.EmployeService;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.PersonneService;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.support.TransactionSynchronizationUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -83,8 +86,17 @@ public class EmployeController {
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public String edit(@ModelAttribute("personne_employe") PersonneEmployeWrapper pew){
         personneService.update(pew.getPersonne());
+        
         employeService.update(pew.getEmploye());
         return "redirect:/employe"; 
     }
     
+    @RequestMapping(value = "details/{id_personne}", method = RequestMethod.GET)
+    public String details(@PathVariable("id_personne") int id_personne, ModelMap modelMap){
+        PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
+        pew.setPersonne(personneService.find(id_personne));
+        pew.setEmploye(employeService.find(id_personne));
+        modelMap.put("personne_employe", pew);
+        return "employe/details"; 
+    }
 }

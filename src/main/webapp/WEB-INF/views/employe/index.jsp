@@ -42,6 +42,7 @@
                                         <td>
                                             <a href="${pageContext.request.contextPath}/employe/edit/${personnes.get(i).id_personne}">Modifier</a>
                                             <a href="${pageContext.request.contextPath}/employe/delete/${personnes.get(i).id_personne}">Supprimer</a>
+                                            <a href="${pageContext.request.contextPath}/employe/details/${personnes.get(i).id_personne}">Détails</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
