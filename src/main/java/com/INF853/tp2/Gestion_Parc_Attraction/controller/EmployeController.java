@@ -6,19 +6,16 @@
 package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
+import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.PersonneEmployeWrapper;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.EmployeService;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.PersonneService;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Map;
 import javax.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.support.TransactionSynchronizationUtils;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,35 +37,28 @@ public class EmployeController {
     private EmployeService employeService;
     
     @RequestMapping(method = RequestMethod.GET)
-    public String index(ModelMap modelMap){
-        List<Employe> employes = employeService.findAll();
-        List<Personne> personnes = personneService.findAll("employe");
-        for(Employe e : employes){
-            System.out.println(e.getLogin());
-        }
-        for(Personne p : personnes){
-            System.out.println(p.getNom());
-        }
-        
-        modelMap.put("size", employes.size());
-        System.out.println(employes.size());
-        modelMap.put("employes", employes);
-        modelMap.put("personnes", personnes);
-        modelMap.put("title", "Gestion Employe");
-        return "employe/index"; 
     public String index(ModelMap modelMap, HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         if(cookies.length > 1) {
             if(cookies[2].getValue().equals("Gerant_du_personnel") || cookies[2].getValue().equals("Administrateur")) {
                 List<Employe> employes = employeService.findAll();
+                List<Personne> personnes = personneService.findAll("employe");
+                for(Employe e : employes){
+                    System.out.println(e.getLogin());
+                }
+                for(Personne p : personnes){
+                    System.out.println(p.getNom());
+                }
+
                 modelMap.put("size", employes.size());
+                System.out.println(employes.size());
                 modelMap.put("employes", employes);
-                modelMap.put("personnes", personneService.findAll("employe"));
-                modelMap.put("title", "Gestion employes");
-                return "employe/index";
+                modelMap.put("personnes", personnes);
+                modelMap.put("title", "Gestion Employe");
+                return "employe/index"; 
             }
         }
-        return "redirect:/login";
+        return "redirect:/login";     
     }
     
     @RequestMapping(value = "add", method = RequestMethod.GET)
