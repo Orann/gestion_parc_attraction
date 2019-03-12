@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="right-align">
-                        <button class="btn waves-effect waves-light" value="creer" type="submit">Crï¿½er
+                        <button class="btn waves-effect waves-light" value="creer" type="submit">Créer
                                 <i class="material-icons right">send</i>
                         </button>
                     </div>
