@@ -20,6 +20,7 @@
                     <br><a href="${pageContext.request.contextPath}/attraction/">Acceder aux attractions</a>
                     <br><a href="${pageContext.request.contextPath}/boutique/">Acceder aux boutiques</a>
                     <br><a href="${pageContext.request.contextPath}/employe/">Acceder aux employes</a>
+                    <br><a href="${pageContext.request.contextPath}/client/">Acceder aux clients</a>
                 </c:if>
                 <c:if test="${cookieType == 'Gerant_des_attractions'}">
                     <a href="${pageContext.request.contextPath}/attraction/">Acceder aux attractions</a>

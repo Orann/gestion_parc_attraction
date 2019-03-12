@@ -26,7 +26,7 @@
                 </ul>
             </c:if>
             <c:if test="${title != 'Accueil' && title != 'Connexion'}">
-                <a href="${pageContext.request.contextPath}/employe/" class="brand-logo center">Gestion de parc d'attraction</a>
+                <a href="${pageContext.request.contextPath}/menu/" class="brand-logo center">Gestion de parc d'attraction</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="${pageContext.request.contextPath}/deconnexion">Déconnexion</a></li>
                 </ul>
