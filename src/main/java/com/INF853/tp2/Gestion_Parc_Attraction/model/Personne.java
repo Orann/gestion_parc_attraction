@@ -48,4 +48,11 @@ public class Personne {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
+    @Override
+    public String toString() {
+        return "Personne{" + "id_personne=" + id_personne + ", nom=" + nom + ", prenom=" + prenom + '}';
+    }
+    
+    
 }

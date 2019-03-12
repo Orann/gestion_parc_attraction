@@ -7,10 +7,12 @@ package com.INF853.tp2.Gestion_Parc_Attraction.dao;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import java.util.List;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.transform.Transformers;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.StringType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,9 +35,13 @@ public class PersonneDAOImpl implements PersonneDAO {
             session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             System.out.println(nom);
-            SQLQuery q = session.createSQLQuery("SELECT p.id_personne, nom, prenom FROM `personne` p JOIN "+nom+" c ON p.id_personne = c.id_personne");
-            System.out.println(q.list());
-            personnes = q.list();
+            personnes = session.createSQLQuery("SELECT p.id_personne, p.nom, p.prenom FROM `personne` p JOIN "+nom+" c ON p.id_personne = c.id_personne")
+                    .addScalar("id_personne", new IntegerType())
+                    .addScalar("nom", new StringType())
+                    .addScalar("prenom", new StringType())
+                    .setResultTransformer(Transformers.aliasToBean(Personne.class))
+                    .list();
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

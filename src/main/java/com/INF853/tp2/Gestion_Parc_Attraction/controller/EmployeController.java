@@ -35,10 +35,18 @@ public class EmployeController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(ModelMap modelMap){
         List<Employe> employes = employeService.findAll();
+        List<Personne> personnes = personneService.findAll("employe");
+        for(Employe e : employes){
+            System.out.println(e.getLogin());
+        }
+        for(Personne p : personnes){
+            System.out.println(p.getNom());
+        }
+        
         modelMap.put("size", employes.size());
         System.out.println(employes.size());
         modelMap.put("employes", employes);
-        modelMap.put("personnes", personneService.findAll("employe"));
+        modelMap.put("personnes", personnes);
         modelMap.put("title", "Gestion Employe");
         return "employe/index"; 
     }
