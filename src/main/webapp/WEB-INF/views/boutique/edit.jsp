@@ -20,13 +20,8 @@
                             <label for="nom">Nom</label>
                         </div>
                         <div class="input-field col s6">
-                            <select>
-                              <option path="type" id="type" value="" disabled selected>Type</option>
-                              <option path="type" id="type" value="Souvenir">Souvenir</option>
-                              <option path="type" id="type" value="Restaurant">Restaurant</option>
-                              <option path="type" id="type" value="FoodTruck">Food Truck</option>
-                            </select>
-                            <label for="type">Materialize Select</label>
+                            <f:select path="type" id="type" items="${type}"/>
+                            <label for="type">Type</label>
                           </div>
                             <f:hidden path="id"/>
                     </div>

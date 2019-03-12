@@ -64,6 +64,11 @@ public class BoutiqueController {
     public String edit(@PathVariable("id") int id, ModelMap modelMap){
         modelMap.addAttribute("boutique", new Boutique());
         modelMap.put("boutique", boutiqueService.find(id));
+        Map<String, String> types = new HashMap<String, String>();
+        types.put("Restaurant", "Restaurant");
+        types.put("Souvenir", "Souvenir");
+        types.put("Food Truck", "Food Truck");
+        modelMap.put("type", types);
         return "boutique/edit"; 
     }
     

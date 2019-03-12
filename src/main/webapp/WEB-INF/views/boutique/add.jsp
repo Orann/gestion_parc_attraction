@@ -21,7 +21,7 @@
                         <div class="input-field col s6">
                             <f:select path="type" id="type" items="${type}"/>
                             <label for="type">Type</label>
-                          </div>
+                        </div>
                     </div>
                     <div class="right-align">
                         <button class="btn waves-effect waves-light" value="creer" type="submit">Cr�er

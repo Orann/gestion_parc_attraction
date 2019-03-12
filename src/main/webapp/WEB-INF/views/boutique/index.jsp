@@ -26,8 +26,9 @@
                                 <th>ID</th>
                                 <th>Nom</th> 
                                 <th>Type</th>
+                                <th>Action</th>
                             </tr>
-                            <c:forEach var="boutique" items="${boutique}">
+                            <c:forEach var="boutique" items="${boutiques}">
                                 <tr>
                                     <td>${boutique.id}</td>
                                     <td>${boutique.nom}</td> 
