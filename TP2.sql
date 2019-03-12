@@ -1,0 +1,13 @@
+CREATE TABLE Personne (id_personne int(10) NOT NULL AUTO_INCREMENT, nom varchar(255) NOT NULL, prenom varchar(255) NOT NULL, PRIMARY KEY (id_personne)) ENGINE=InnoDB;
+CREATE TABLE Client (id_personne int(10) NOT NULL, nombre_demi_journee int(10) NOT NULL, prix_paye float NOT NULL, PRIMARY KEY (id_personne)) ENGINE=InnoDB;
+CREATE TABLE Employe (id_personne int(10) NOT NULL, login varchar(255) NOT NULL UNIQUE, mot_de_passe varchar(255) NOT NULL, type varchar(255) NOT NULL, adresse varchar(255), age int(10), salaire double, PRIMARY KEY (id_personne)) ENGINE=InnoDB;
+CREATE TABLE Boutique (id int(10) NOT NULL AUTO_INCREMENT, nom varchar(255) NOT NULL, fonds_en_euro float DEFAULT 0 NOT NULL, type varchar(255) NOT NULL, PRIMARY KEY (id)) ENGINE=InnoDB;
+CREATE TABLE Employe_Boutique (id_boutique int(10) NOT NULL, id_personne int(10) NOT NULL, PRIMARY KEY (id_boutique, id_personne)) ENGINE=InnoDB;
+CREATE TABLE Attraction (id int(10) NOT NULL AUTO_INCREMENT, nom varchar(255) NOT NULL, type varchar(255) NOT NULL, PRIMARY KEY (id)) ENGINE=InnoDB;
+CREATE TABLE Employe_Attraction (id_personne int(10) NOT NULL, id_attraction int(10) NOT NULL, PRIMARY KEY (id_personne, id_attraction)) ENGINE=InnoDB;
+ALTER TABLE Employe_Boutique ADD CONSTRAINT FKEmploye_Bo342574 FOREIGN KEY (id_boutique) REFERENCES Boutique (id);
+ALTER TABLE Employe ADD CONSTRAINT FKEmploye100896 FOREIGN KEY (id_personne) REFERENCES Personne (id_personne);
+ALTER TABLE Employe_Boutique ADD CONSTRAINT FKEmploye_Bo843448 FOREIGN KEY (id_personne) REFERENCES Employe (id_personne);
+ALTER TABLE Employe_Attraction ADD CONSTRAINT FKEmploye_At471627 FOREIGN KEY (id_personne) REFERENCES Employe (id_personne);
+ALTER TABLE Employe_Attraction ADD CONSTRAINT FKEmploye_At837574 FOREIGN KEY (id_attraction) REFERENCES Attraction (id);
+ALTER TABLE Client ADD CONSTRAINT FKClient330998 FOREIGN KEY (id_personne) REFERENCES Personne (id_personne);
