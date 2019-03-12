@@ -15,8 +15,9 @@
     </head>
 
     <body>
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="light-red lighten-1" role="navigation">
         <div class="nav-wrapper valign-wrapper">
             <a href="#" class="brand-logo center">Gestion de parc d'attraction</a>
         </div>
     </nav>
+    
