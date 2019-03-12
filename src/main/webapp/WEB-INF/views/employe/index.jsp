@@ -24,12 +24,12 @@
                     <div class="col s8 offset-s2">
                         <table class="striped centered responsive-table">
                             <tr>
-                                <th>ID</th>
-                                <th>Prénom</th> 
-                                <th>Nom</th>
-                                <th>Login</th>
-                                <th>Type</th>
-                                <th>Action</th>
+                                <th><center>ID</center></th>
+                                <th><center>Prénom</center></th> 
+                                <th><center>Nom</center></th>
+                                <th><center>Login</center></th>
+                                <th><center>Type</center></th>
+                                <th><center>Action</center></th>
                             </tr>
                             <c:if test="${size != 0}">
                                 <c:forEach var = "i" begin = "0" end = "${size-1}">
