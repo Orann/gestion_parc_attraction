@@ -23,7 +23,7 @@
                             <label for="nom">Nom</label>
                         </div>
                         <div class="input-field col s4">
-                            <f:input path="employe.type" id="type" type="text" class="validate"/>
+                            <f:select path="employe.type" id="type" items="${type}" class="validate"/>
                             <label for="type">Type</label>
                         </div>
                     </div>

@@ -6,11 +6,14 @@
 package com.INF853.tp2.Gestion_Parc_Attraction.controller;
 
 import com.INF853.tp2.Gestion_Parc_Attraction.model.Employe;
-import com.INF853.tp2.Gestion_Parc_Attraction.model.Personne;
 import com.INF853.tp2.Gestion_Parc_Attraction.model.PersonneEmployeWrapper;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.EmployeService;
 import com.INF853.tp2.Gestion_Parc_Attraction.service.PersonneService;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -33,21 +37,38 @@ public class EmployeController {
     private EmployeService employeService;
     
     @RequestMapping(method = RequestMethod.GET)
-    public String index(ModelMap modelMap){
-        List<Employe> employes = employeService.findAll();
-        modelMap.put("size", employes.size());
-        System.out.println(employes.size());
-        modelMap.put("employes", employes);
-        modelMap.put("personnes", personneService.findAll());
-        modelMap.put("title", "Accueil");
-        return "employe/index"; 
+    public String index(ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_du_personnel") || cookies[2].getValue().equals("Administrateur")) {
+                List<Employe> employes = employeService.findAll();
+                modelMap.put("size", employes.size());
+                modelMap.put("employes", employes);
+                modelMap.put("personnes", personneService.findAll());
+                modelMap.put("title", "Accueil");
+                return "employe/index";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String add(ModelMap modelMap){
-        PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
-        modelMap.put("personne_employe", pew);
-        return "employe/add"; 
+    public String add(ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_du_personnel") || cookies[2].getValue().equals("Administrateur")) {
+                PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
+                modelMap.put("personne_employe", pew);
+                Map<String, String> types = new HashMap<String, String>();
+                types.put("Gerant_des_attractions", "Gerant des attractions");
+                types.put("Gerant_des_boutiques", "Gerant des boutiques");
+                types.put("Gerant_du_personnel", "Gerant du personnel");
+                types.put("Administrateur", "Administrateur");
+                modelMap.put("type", types);
+                return "employe/add"; 
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -57,19 +78,37 @@ public class EmployeController {
     }
     
     @RequestMapping(value = "delete/{id_personne}", method = RequestMethod.GET)
-    public String delete(@PathVariable("id_personne") int id_personne){
-        employeService.delete(id_personne);
-        personneService.delete(id_personne);        
-        return "redirect:/employe"; 
+    public String delete(@PathVariable("id_personne") int id_personne, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_du_personnel") || cookies[2].getValue().equals("Administrateur")) {
+                employeService.delete(id_personne);
+                personneService.delete(id_personne);        
+                return "redirect:/employe";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "edit/{id_personne}", method = RequestMethod.GET)
-    public String edit(@PathVariable("id_personne") int id_personne, ModelMap modelMap){
-        PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
-        pew.setPersonne(personneService.find(id_personne));
-        pew.setEmploye(employeService.find(id_personne));
-        modelMap.put("personne_employe", pew);
-        return "employe/edit"; 
+    public String edit(@PathVariable("id_personne") int id_personne, ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_du_personnel") || cookies[2].getValue().equals("Administrateur")) {
+                PersonneEmployeWrapper pew = new PersonneEmployeWrapper();
+                pew.setPersonne(personneService.find(id_personne));
+                pew.setEmploye(employeService.find(id_personne));
+                modelMap.put("personne_employe", pew);
+                Map<String, String> types = new HashMap<String, String>();
+                types.put("Gerant_des_attractions", "Gerant des attractions");
+                types.put("Gerant_des_boutiques", "Gerant des boutiques");
+                types.put("Gerant_du_personnel", "Gerant du personnel");
+                types.put("Administrateur", "Administrateur");
+                modelMap.put("type", types);
+                return "employe/edit";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "edit", method = RequestMethod.POST)

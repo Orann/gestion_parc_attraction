@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -30,22 +32,34 @@ public class BoutiqueController {
     private BoutiqueService boutiqueService;
     
     @RequestMapping(method = RequestMethod.GET)
-    public String index(ModelMap modelMap){
-        modelMap.put("boutiques", boutiqueService.findAll());
-        modelMap.put("title", "Accueil");
-        return "boutique/index"; 
+    public String index(ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_des_boutiques") || cookies[2].getValue().equals("Administrateur")) {
+                modelMap.put("boutiques", boutiqueService.findAll());
+                modelMap.put("title", "Accueil");
+                return "boutique/index";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String add(ModelMap modelMap){
-        modelMap.addAttribute("boutique", new Boutique());
-        modelMap.put("boutique", new Boutique());
-        Map<String, String> types = new HashMap<String, String>();
-        types.put("Restaurant", "Restaurant");
-        types.put("Souvenir", "Souvenir");
-        types.put("Food Truck", "Food Truck");
-        modelMap.put("type", types);
-        return "boutique/add"; 
+    public String add(ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_des_boutiques") || cookies[2].getValue().equals("Administrateur")) {
+                modelMap.addAttribute("boutique", new Boutique());
+                modelMap.put("boutique", new Boutique());
+                Map<String, String> types = new HashMap<String, String>();
+                types.put("Restaurant", "Restaurant");
+                types.put("Souvenir", "Souvenir");
+                types.put("Food Truck", "Food Truck");
+                modelMap.put("type", types);
+                return "boutique/add";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -55,21 +69,33 @@ public class BoutiqueController {
     }
     
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-    public String add(@PathVariable("id") int id){
-        boutiqueService.delete(id);
-        return "redirect:/boutique"; 
+    public String add(@PathVariable("id") int id, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_des_boutiques") || cookies[2].getValue().equals("Administrateur")) {
+                boutiqueService.delete(id);
+                return "redirect:/boutique"; 
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable("id") int id, ModelMap modelMap){
-        modelMap.addAttribute("boutique", new Boutique());
-        modelMap.put("boutique", boutiqueService.find(id));
-        Map<String, String> types = new HashMap<String, String>();
-        types.put("Restaurant", "Restaurant");
-        types.put("Souvenir", "Souvenir");
-        types.put("Food Truck", "Food Truck");
-        modelMap.put("type", types);
-        return "boutique/edit"; 
+    public String edit(@PathVariable("id") int id, ModelMap modelMap, HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies.length > 1) {
+            if(cookies[2].getValue().equals("Gerant_des_boutiques") || cookies[2].getValue().equals("Administrateur")) {
+                modelMap.addAttribute("boutique", new Boutique());
+                modelMap.put("boutique", boutiqueService.find(id));
+                Map<String, String> types = new HashMap<String, String>();
+                types.put("Restaurant", "Restaurant");
+                types.put("Souvenir", "Souvenir");
+                types.put("Food Truck", "Food Truck");
+                modelMap.put("type", types);
+                return "boutique/edit";
+            }
+        }
+        return "redirect:/login";
     }
     
     @RequestMapping(value = "edit", method = RequestMethod.POST)

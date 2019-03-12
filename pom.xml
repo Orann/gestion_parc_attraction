@@ -53,6 +53,7 @@
     </dependencies>
 
     <build>
+        <finalName>springcookie</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
